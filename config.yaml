@@ -1,0 +1,34 @@
+General:
+    Modus: "Collider"
+    Delta_Time: 0.1
+    End_Time: 100.0
+    Randomseed: -1
+    Nevents: 10000
+    Use_Grid: true
+    Time_Step_Mode: "Fixed"
+
+Collision_Term:
+    Force_Decays_At_End: True
+    Include_Weak_And_EM_Decays_At_The_End: True
+
+Modi:
+    Collider:
+        Projectile:
+            Particles: {2212: 79, 2112: 118}
+        Target:
+            Particles: {2212: 79, 2112: 118}
+        Impact:
+            Sample: "quadratic"
+            Range: [0.0,4.7] #0-10% but I'm not sure if the bmax is correct
+
+        E_Kin: 1.23
+        Fermi_Motion: "frozen"
+        Calculation_Frame: "center of mass"
+        Collisions_Within_Nucleus: False
+        Initial_Distance: 4.0 #in fm; default is 2
+
+Output:
+    Particles:
+        Format: ["Oscar2013"]
+        Extended: True
+        Only_Final: "IfNotEmpty"
