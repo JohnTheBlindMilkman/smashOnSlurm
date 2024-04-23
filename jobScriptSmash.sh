@@ -60,7 +60,7 @@ cd $par1
 pwd
 
 # execute enviornmental script
-. ${par2}
+. ${scriptFile}
 
 # execute the binary file
 ldd smash
