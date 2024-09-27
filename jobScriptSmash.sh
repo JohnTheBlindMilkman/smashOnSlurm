@@ -78,3 +78,5 @@ then
     echo "JOB: $JOB_ID CRASHED ON HOST: $host "
     echo "JOB: $JOB_ID CRASHED ON HOST: $host WITH OUTFILE $outfile_wo_path" > ${outdir}/crash/slurm${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}_crash.txt
 fi
+
+exit "$status"

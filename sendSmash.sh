@@ -10,12 +10,21 @@ submitDir="/lustre/hades/user/kjedrzej/submit/Smash"
 outputDir="/lustre/hades/user/kjedrzej/Smash"
 smashCofigFileName="config"
 NumberOfJobs=100
-email="k.jedrzej@gsi.de" # will send an e-mail once the bash has finished / crashed / was cancelled
+email="k.jedrzej@gsi.de" # SLURM will send an e-mail once the batch has finished, crashed or was cancelled
 # ======================================================
+
+
+# copy enviornmental script
+if [! -f "${envScript}"]
+then 
+    echo "Enviornmental script not found. Copying one from this directory to ${envScript}."
+    cp ./setEnvSmash.sh ${envScript}
+fi
 
 # create empty job file
 if [ -f "jobfile.dat" ];
 then
+    echo "Found old jobfile. Creating an emplty one in its place."
     rm jobfile.dat
 fi
 touch jobfile.dat
@@ -23,17 +32,19 @@ touch jobfile.dat
 # create output dir if there isn't one already
 if [ ! -d "${outputDir}" ];
 then 
+    echo "Output directory was not found. Creating a new one under the path ${outputDir}."
     mkdir ${outputDir}
 fi
 
 # create SLURM output and crash dir if there isn't one already
-SLURMout="${outputDir}/out"
-if [ ! -d "${SLURMout}" ];
+if [ ! -d "${outputDir}/out" ];
 then 
-    mkdir ${SLURMout}
+    echo "SLURM output directory was not found. Creating a new one under the path ${outputDir}/out."
+    mkdir ${outputDir}/out
 fi
 if [ ! -d "${outputDir}/crash" ];
 then
+    echo "SLURM crash directory was not found. Creating a new one under the path ${outputDir}/crash."
     mkdir ${outputDir}/crash
 fi
 
@@ -43,13 +54,14 @@ do
     mkdir ${outputDir}/job_${job}
     cp smash ${outputDir}/job_${job}/.
     cp ${smashCofigFileName}.yaml ${outputDir}/job_${job}/.
-    echo "${outputDir}/job_${job}"
+    echo "Directory ${outputDir}/job_${job} is ready."
     echo "${outputDir}/job_${job}" >> jobfile.dat
 done
 
 # move necessary files to submit dir
 if [ ! -d "${submitDir}" ];
 then 
+    echo "SLURM submit directory was not found. Creating a new one under the path ${submitDir}."
     mkdir ${submitDir}
 fi
 cp jobfile.dat ${submitDir}/.
