@@ -1,6 +1,6 @@
 # How to run SMASH on SLURM
 
-1. Copy the `smash` and `setEnvSmash.sh` from /cvmfs/hadessoft.gsi.de/install/debian10/smash-3.0/
+1. Copy the SMASH binary file to this directory.
 
 2. Create your `config.yaml` file for SMASH input as specified in the [documentation](https://smash-transport.github.io/).
 
@@ -17,7 +17,6 @@
 The only part that will need to be changed by an average user is this:
 ```
 # ===================== edit these =====================
-envScript="/your/path/to/setEnvSmash.sh"
 submitDir="/your/path/to/submit/Smash"
 outputDir="/your/path/to/output/Smash"
 smashCofigFileName="config"
@@ -25,8 +24,6 @@ NumberOfJobs=100
 email="your.email@gsi.de"
 # ======================================================
 ```
-
-`envScript` is the absolute path to the location of the enviornmental script. Better keep it in lustre, the SLURM may not have access to your home directory.
 
 `submitDir` is the directory in which the batch will be executed.
 
@@ -44,7 +41,7 @@ email="your.email@gsi.de"
 
 You may want to play with the partition, the job wall time, and the allocated memory at your own risk. To do that please tak a look at the last command in `sendSmash.sh` file:
 ```
-sbatch --array=1-${NumberOfJobs} --job-name="SMASHing" --mem=2000 --time=0-48:00:00 --partition=long --mail-type=END --mail-user=${email} -D ${submitDir} --output=${SLURMout}/slurm-%A_%a.out -- ${submitDir}/jobScriptSmash.sh ${submitDir}/jobfile.dat ${envScript} ${outputDir}
+sbatch --array=1-${NumberOfJobs} --job-name="SMASHing" --mem=2000 --time=0-48:00:00 --partition=long --mail-type=END --mail-user=${email} -D ${submitDir} --output=${SLURMout}/slurm-%A_%a.out -- ${submitDir}/jobScriptSmash.sh ${submitDir}/jobfile.dat ${outputDir}
 ```
 
 > Please note the `--mem`, `--time`, and `--partition` flags of the `sbatch` command.

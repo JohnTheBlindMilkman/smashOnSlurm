@@ -59,9 +59,6 @@ echo ""
 cd $par1
 pwd
 
-# execute enviornmental script
-. ${scriptFile}
-
 # execute the binary file
 ldd smash
 ./smash

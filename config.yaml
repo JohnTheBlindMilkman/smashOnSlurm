@@ -7,10 +7,6 @@ General:
     Use_Grid: true
     Time_Step_Mode: "Fixed"
 
-Collision_Term:
-    Force_Decays_At_End: True
-    Include_Weak_And_EM_Decays_At_The_End: True
-
 Modi:
     Collider:
         Projectile:
@@ -19,13 +15,13 @@ Modi:
             Particles: {2212: 79, 2112: 118}
         Impact:
             Sample: "quadratic"
-            Range: [0.0,4.7] #0-10% but I'm not sure if the bmax is correct
+            Range: [0.,4.7] # 0. - 4.7 (0-10%), 4.7 - 6.6 (10%-20%), 6.6 - 8.1 (20%-30%), 8.1 - 9.3 (30%-40%) https://inspirehep.net/literature/1644672
 
         E_Kin: 1.23
         Fermi_Motion: "frozen"
-        Calculation_Frame: "center of mass"
+        Calculation_Frame: "fixed target"
         Collisions_Within_Nucleus: False
-        Initial_Distance: 4.0 #in fm; default is 2
+        Initial_Distance: 4.0
 
 Output:
     Particles:

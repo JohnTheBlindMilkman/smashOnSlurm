@@ -5,21 +5,12 @@
 # date: 10.04.2024
 
 # ===================== edit these =====================
-envScript="/lustre/hades/user/kjedrzej/setEnvSmash.sh"
 submitDir="/lustre/hades/user/kjedrzej/submit/Smash"
 outputDir="/lustre/hades/user/kjedrzej/Smash"
 smashCofigFileName="config"
 NumberOfJobs=100
 email="k.jedrzej@gsi.de" # SLURM will send an e-mail once the batch has finished, crashed or was cancelled
 # ======================================================
-
-
-# copy enviornmental script
-if [! -f "${envScript}"]
-then 
-    echo "Enviornmental script not found. Copying one from this directory to ${envScript}."
-    cp ./setEnvSmash.sh ${envScript}
-fi
 
 # create empty job file
 if [ -f "jobfile.dat" ];
@@ -68,4 +59,4 @@ cp jobfile.dat ${submitDir}/.
 cp jobScriptSmash.sh ${submitDir}/.
 
 # send job batch
-sbatch --array=1-${NumberOfJobs} --job-name="SMASHing" --mem=2000 --time=0-48:00:00 --partition=long --mail-type=END --mail-user=${email} -D ${submitDir} --output=${SLURMout}/slurm-%A_%a.out -- ${submitDir}/jobScriptSmash.sh ${submitDir}/jobfile.dat ${envScript} ${outputDir}
+sbatch --array=1-${NumberOfJobs} --job-name="SMASHing" --mem=2000 --time=0-48:00:00 --partition=long --mail-type=END --mail-user=${email} -D ${submitDir} --output=${SLURMout}/slurm-%A_%a.out -- ${submitDir}/jobScriptSmash.sh ${submitDir}/jobfile.dat ${outputDir}
