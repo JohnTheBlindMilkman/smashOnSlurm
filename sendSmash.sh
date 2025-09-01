@@ -5,8 +5,8 @@
 # date: 10.04.2024
 
 # ===================== edit these =====================
-submitDir="/lustre/hades/user/kjedrzej/submit/Smash"
-outputDir="/lustre/hades/user/kjedrzej/Smash"
+submitDir="/your/path/to/submit/Smash"
+outputDir="/your/path/to/output/Smash"
 smashCofigFileName="config"
 NumberOfJobs=100
 email="k.jedrzej@gsi.de" # SLURM will send an e-mail once the batch has finished, crashed or was cancelled

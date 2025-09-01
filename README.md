@@ -55,7 +55,7 @@ lustreBase="/your/path/to/output/Smash"
 smashJobBasename="job_"
 smashOutputFormat="oscar"
 smashCofigFileName="config"
-outputDir="/your/path/to/SmashResults/AuAu_1p23AGeV_0_10cent"
+outputDir="/your/path/to/Smash/Results"
 NumberOfJobs=100
 # ======================================================
 ```

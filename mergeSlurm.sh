@@ -5,11 +5,11 @@
 # date: 11.04.2024
 
 # ===================== edit these =====================
-lustreBase="/lustre/hades/user/kjedrzej/Smash"
+lustreBase="/your/path/to/output/Smash"
 smashJobBasename="job_"
 smashOutputFormat="oscar"
 smashCofigFileName="config"
-outputDir="/lustre/hades/user/kjedrzej/SmashResults/AuAu_1p23AGeV_0_10cent"
+outputDir="/your/path/to/Smash/Results"
 NumberOfJobs=100
 # ======================================================
 
